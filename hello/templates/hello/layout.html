@@ -1,0 +1,28 @@
+<!-- filepath: c:\Users\mohid\todoproject\django-template\hello\templates\hello\layout.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>{% block title %}Personal Diary{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'hello/site.css' %}">
+    {% block extra_css %}{% endblock %}  {# Allows extra CSS in child templates #}
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'log' %}">Write a Message</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'account_logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'account_login' %}">Login</a></li>
+                <li><a href="{% url 'account_signup' %}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

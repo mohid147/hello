@@ -1,0 +1,13 @@
+<!-- filepath: c:\Users\mohid\todoproject\django-template\hello\templates\hello\edit_message.html -->
+{% extends 'hello/layout.html' %}
+
+{% block title %}Edit Message{% endblock %}
+
+{% block content %}
+    <h1>Edit Message</h1>
+    <form method="POST" class="edit-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+{% endblock %}
